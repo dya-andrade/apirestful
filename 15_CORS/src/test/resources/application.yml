@@ -1,0 +1,19 @@
+server:
+  port: 8888
+cors:
+  originPatterns: http://localhost:8080,http://localhost:3000,https://apirestful.com.br
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+#db gerado dinamicamente runtime
+  jpa:
+    hibernate.ddl-auto: none
+    generate-ddl: true
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+springdoc:
+  pathsToMatch: /api/**/v1/**
+  swagger-ui:
+    use-root-path: true
