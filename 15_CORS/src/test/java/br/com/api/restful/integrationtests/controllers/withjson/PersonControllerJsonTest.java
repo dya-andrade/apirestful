@@ -76,19 +76,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest { //TestCo
 		PersonVO persistedPerson = objectMapper.readValue(content, PersonVO.class);
 		person = persistedPerson;
 		
-		assertNotNull(persistedPerson);
-		assertNotNull(persistedPerson.getId());
-		assertTrue(persistedPerson.getId() > 0);
-		assertNotNull(persistedPerson.getFirstName());
-		assertNotNull(persistedPerson.getLastName());
-		assertNotNull(persistedPerson.getAddress());
-		assertNotNull(persistedPerson.getGender());
-
-		assertEquals("Dyane", persistedPerson.getFirstName());
-		assertEquals("Andrade", persistedPerson.getLastName());
-		assertEquals("Embu das Artes - SP", persistedPerson.getAddress());
-		assertEquals("Female", persistedPerson.getGender());
-
+		assertPersisted(persistedPerson);
 	}
 	
 	
@@ -119,8 +107,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest { //TestCo
 				.extract()
 					.body().asString();
 		
-		assertNotNull(content);
-		assertEquals("Invalid CORS request", content);
+		assertWrongOrigin(content);
 		
 	}
 	
@@ -155,19 +142,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest { //TestCo
 		PersonVO persistedPerson = objectMapper.readValue(content, PersonVO.class);
 		person = persistedPerson;
 		
-		assertNotNull(persistedPerson);
-		assertNotNull(persistedPerson.getId());
-		assertTrue(persistedPerson.getId() > 0);
-		assertNotNull(persistedPerson.getFirstName());
-		assertNotNull(persistedPerson.getLastName());
-		assertNotNull(persistedPerson.getAddress());
-		assertNotNull(persistedPerson.getGender());
-
-		assertEquals("Dyane", persistedPerson.getFirstName());
-		assertEquals("Andrade", persistedPerson.getLastName());
-		assertEquals("Embu das Artes - SP", persistedPerson.getAddress());
-		assertEquals("Female", persistedPerson.getGender());
-
+		assertPersisted(persistedPerson);
 	}
 	
 	
@@ -198,9 +173,29 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest { //TestCo
 			.extract()
 				.body().asString();
 		
+		assertWrongOrigin(content);
+		
+	}
+	
+	private void assertWrongOrigin(String content) {
 		assertNotNull(content);
 		assertEquals("Invalid CORS request", content);
+	}
+	
+	private void assertPersisted(PersonVO persistedPerson) {
+		
+		assertNotNull(persistedPerson);
+		assertNotNull(persistedPerson.getId());
+		assertTrue(persistedPerson.getId() > 0);
+		assertNotNull(persistedPerson.getFirstName());
+		assertNotNull(persistedPerson.getLastName());
+		assertNotNull(persistedPerson.getAddress());
+		assertNotNull(persistedPerson.getGender());
 
+		assertEquals("Dyane", persistedPerson.getFirstName());
+		assertEquals("Andrade", persistedPerson.getLastName());
+		assertEquals("Embu das Artes - SP", persistedPerson.getAddress());
+		assertEquals("Female", persistedPerson.getGender());
 	}
 
 	private void mockPerson() {
