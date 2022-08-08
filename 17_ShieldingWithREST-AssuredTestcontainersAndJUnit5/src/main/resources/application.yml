@@ -1,0 +1,26 @@
+cors:
+  originPatterns: http://localhost:8080,http://localhost:3000,https://apirestful.com.br
+security:
+  jwt:
+    token:
+      secret-key: 53cr53
+      expire-length: 3600000
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/apirestful?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+springdoc:
+  pathsToMatch:
+  - /auth/** 
+  - /api/**/v1/**
+  swagger-ui:
+    use-root-path: true
