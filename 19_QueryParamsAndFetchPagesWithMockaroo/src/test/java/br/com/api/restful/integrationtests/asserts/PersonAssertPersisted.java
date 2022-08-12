@@ -1,6 +1,6 @@
 package br.com.api.restful.integrationtests.asserts;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -127,5 +127,50 @@ public class PersonAssertPersisted {
 	public void assertWrongOrigin(String content) {
 		assertNotNull(content);
 		assertEquals("Invalid CORS request", content);
+	}
+	
+	public void assertHATEAOSJSON(String content) {
+		//quando acessa o context utiliza a porta 8888
+		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8888/api/person/v1/943\"}}}"));
+		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8888/api/person/v1/803\"}}}"));
+		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8888/api/person/v1/605\"}}}"));
+
+		assertTrue(content.contains("\"page\":{\"size\":10,\"totalElements\":1005,\"totalPages\":101,\"number\":3}}"));
+		
+		assertTrue(content.contains("\"first\":{\"href\":\"http://localhost:8888/api/person/v1?direction=asc&page=0&size=10&sort=firstName,asc\"}"));
+		assertTrue(content.contains("\"prev\":{\"href\":\"http://localhost:8888/api/person/v1?direction=asc&page=2&size=10&sort=firstName,asc\"}"));
+		assertTrue(content.contains("\"self\":{\"href\":\"http://localhost:8888/api/person/v1?page=3&size=10&direction=asc\"}"));
+		assertTrue(content.contains("\"next\":{\"href\":\"http://localhost:8888/api/person/v1?direction=asc&page=4&size=10&sort=firstName,asc\"}"));
+		assertTrue(content.contains("\"last\":{\"href\":\"http://localhost:8888/api/person/v1?direction=asc&page=100&size=10&sort=firstName,asc\"}}"));
+	}
+	
+	public void assertHATEAOSXML(String content) {
+		//quando acessa o context utiliza a porta 8888
+		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8888/api/person/v1/943</href></links>"));
+		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8888/api/person/v1/803</href></links>"));
+		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8888/api/person/v1/605</href></links>"));
+
+		assertTrue(content.contains("<page><size>10</size><totalElements>1005</totalElements><totalPages>101</totalPages><number>3</number></page>"));
+		
+		assertTrue(content.contains("<rel>first</rel><href>http://localhost:8888/api/person/v1?direction=asc&amp;page=0&amp;size=10&amp;sort=firstName,asc</href>"));
+		assertTrue(content.contains("<rel>prev</rel><href>http://localhost:8888/api/person/v1?direction=asc&amp;page=2&amp;size=10&amp;sort=firstName,asc</href>"));
+		assertTrue(content.contains("<rel>self</rel><href>http://localhost:8888/api/person/v1?page=3&amp;size=10&amp;direction=asc</href>"));
+		assertTrue(content.contains("<rel>next</rel><href>http://localhost:8888/api/person/v1?direction=asc&amp;page=4&amp;size=10&amp;sort=firstName,asc</href>"));
+		assertTrue(content.contains("<rel>last</rel><href>http://localhost:8888/api/person/v1?direction=asc&amp;page=100&amp;size=10&amp;sort=firstName,asc</href>"));
+	}
+	
+	public void assertHATEAOSYAML(String content) {
+		//quando acessa o context utiliza a porta 8888
+		assertTrue(content.contains("links:  - rel: \"self\"    href: \"http://localhost:8888/api/person/v1/943\""));
+		assertTrue(content.contains("links:  - rel: \"self\"    href: \"http://localhost:8888/api/person/v1/803\""));
+		assertTrue(content.contains("links:  - rel: \"self\"    href: \"http://localhost:8888/api/person/v1/605\""));
+
+		assertTrue(content.contains("page:  size: 10  totalElements: 1005  totalPages: 101  number: 3"));
+		
+		assertTrue(content.contains("rel: \"first\"  href: \"http://localhost:8888/api/person/v1?direction=asc&page=0&size=10&sort=firstName,asc\""));
+		assertTrue(content.contains("rel: \"prev\"  href: \"http://localhost:8888/api/person/v1?direction=asc&page=2&size=10&sort=firstName,asc\""));
+		assertTrue(content.contains("rel: \"self\"  href: \"http://localhost:8888/api/person/v1?page=3&size=10&direction=asc\""));
+		assertTrue(content.contains("rel: \"next\"  href: \"http://localhost:8888/api/person/v1?direction=asc&page=4&size=10&sort=firstName,asc\""));
+		assertTrue(content.contains("rel: \"last\"  href: \"http://localhost:8888/api/person/v1?direction=asc&page=100&size=10&sort=firstName,asc\""));
 	}
 }

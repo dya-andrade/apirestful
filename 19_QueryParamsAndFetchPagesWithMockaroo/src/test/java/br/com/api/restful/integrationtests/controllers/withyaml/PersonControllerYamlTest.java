@@ -300,4 +300,32 @@ public class PersonControllerYamlTest extends AbstractIntegrationTest { //TestCo
 			.then()
 				.statusCode(403);
 	}
+	
+	@Test
+	@Order(9) //Simulando POSTMAN
+	public void testHATEAOS() throws JsonMappingException, JsonProcessingException {
+				
+		//a specification foi realizada no 0 test	
+		
+		var unthreatedContent =
+			given() //REST Assured
+			.spec(specification)
+			.config(RestAssuredConfig.config()
+					.encoderConfig(EncoderConfig.encoderConfig()
+							.encodeContentTypeAs(TestConfig.CONTENT_TYPE_YML, ContentType.TEXT)))
+			.contentType(TestConfig.CONTENT_TYPE_YML) //receber 
+			.accept(TestConfig.CONTENT_TYPE_YML) //retornar
+			.queryParams("page", 3, "size", 10, "direction", "asc")
+				.when()
+				.get()
+			.then()
+				.statusCode(200)
+			.extract()
+				.body().asString();
+		
+		//tirar as quebras de linhas
+		var content = unthreatedContent.replaceAll("\n", "").replace("\r", "");
+		
+		personAssertPersisted.assertHATEAOSYAML(content);
+	}
 }

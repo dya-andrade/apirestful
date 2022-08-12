@@ -288,4 +288,25 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest { //TestCo
 			.then()
 				.statusCode(403);
 	}
+	
+	@Test
+	@Order(9) //Simulando POSTMAN
+	public void testHATEAOS() throws JsonMappingException, JsonProcessingException {
+				
+		//a specification foi realizada no 0 test	
+		
+		var content =
+			given() //REST Assured
+			.spec(specification)
+			.contentType(TestConfig.CONTENT_TYPE_JSON)
+			.queryParams("page", 3, "size", 10, "direction", "asc")
+				.when()
+				.get()
+			.then()
+				.statusCode(200)
+			.extract()
+				.body().asString();
+		
+		personAssertPersisted.assertHATEAOSJSON(content);
+	}
 }
