@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,33 +20,33 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import br.com.api.restful.data.vo.v1.PersonVO;
+import br.com.api.restful.data.vo.v1.BookVO;
 import br.com.api.restful.exceptions.RequiredObjectIsNullException;
-import br.com.api.restful.model.Person;
-import br.com.api.restful.repositories.PersonRepository;
-import br.com.api.restful.services.PersonService;
-import br.com.api.restful.unitests.mocks.MockPerson;
+import br.com.api.restful.model.Book;
+import br.com.api.restful.repositories.BookRepository;
+import br.com.api.restful.services.BookService;
+import br.com.api.restful.unitests.mocks.MockBook;
 
-@TestInstance(Lifecycle.PER_CLASS) //  cria apenas uma instância da classe de teste e reutilizá-la entre os testes.
+@TestInstance(Lifecycle.PER_CLASS) // Instância por class
 @ExtendWith(MockitoExtension.class)
-class PersonServiceTest {
+class BookServiceTest {
 
-	MockPerson input;
+	MockBook input;
 
 	@InjectMocks
-	private PersonService service;
+	private BookService service;
 
 	@Mock
-	private PersonRepository repository;
+	private BookRepository repository;
 
-	@BeforeEach //executado antes de cada método 
+	@BeforeEach
 	void setUpMocks() throws Exception {
-		input = new MockPerson();
+		input = new MockBook();
 		MockitoAnnotations.openMocks(this); // set mocks em PersonServiceTest
 	}
 
-	private Person findEntity(Long id) {
-		Person entity = input.mockEntity(id.intValue());
+	private Book findEntity(Integer id) {
+		Book entity = input.mockEntity(id);
 		entity.setId(id);
 
 		when(repository.findById(id)).thenReturn(Optional.of(entity));
@@ -53,11 +54,11 @@ class PersonServiceTest {
 		return entity;
 	}
 
-	private PersonVO persistEntity(Person entity) {
-		Person persisted = entity;
+	private BookVO persistEntity(Book entity) {
+		Book persisted = entity;
 		persisted.setId(entity.getId());
 
-		PersonVO vo = input.mockVO(1);
+		BookVO vo = input.mockVO(1);
 		vo.setKey(entity.getId());
 
 		when(repository.save(entity)).thenReturn(persisted);
@@ -65,24 +66,20 @@ class PersonServiceTest {
 		return vo;
 	}
 
-	private void assertResult(PersonVO result) {
+	private void assertResult(BookVO result) {
 		assertNotNull(result);
 		assertNotNull(result.getKey());
 		assertNotNull(result.getLinks());
-		
-		int numero = result.getKey().intValue();
 
-		assertTrue(result.toString().contains("links: [</api/person/v1/" + numero + ">;rel=\"self\"]"));
-		
-		assertEquals("First Name Test" + numero, result.getFirstName());
-		assertEquals("Last Name Test" + numero, result.getLastName());
-		assertEquals("Address Test" + numero, result.getAddress());
+		int numero = result.getKey();
 
-		if (numero % 2 == 0) {
-			assertEquals("Male", result.getGender());
-		} else {
-			assertEquals("Female", result.getGender());
-		}
+		assertTrue(result.toString().contains("links: [</api/book/v1/" + numero + ">;rel=\"self\"]"));
+
+		
+		assertEquals("Author Test" + numero, result.getAuthor());
+		assertEquals("Title Test" + numero, result.getTitle());
+		assertEquals(new Date(), new Date());
+		assertEquals("0.0", String.valueOf(result.getPrice()));
 	}
 
 	private void assertExceptionIsNull(Exception exception) {
@@ -94,7 +91,7 @@ class PersonServiceTest {
 
 	@Test
 	void testFindById() {
-		Person entity = findEntity(1L);
+		Book entity = findEntity(1);
 
 		var result = service.findById(entity.getId());
 
@@ -103,7 +100,7 @@ class PersonServiceTest {
 
 	@Test
 	void testFindAll() {
-		List<Person> list = input.mockEntityList();
+		List<Book> list = input.mockEntityList();
 
 		when(repository.findAll()).thenReturn(list);
 
@@ -112,23 +109,23 @@ class PersonServiceTest {
 		assertNotNull(result);
 		assertEquals(14, result.size());
 
-		var personOne = result.get(1);
+		var bookOne = result.get(1);
 
-		assertResult(personOne);
+		assertResult(bookOne);
 
-		var personFour = result.get(4);
+		var bookFour = result.get(4);
 
-		assertResult(personFour);
+		assertResult(bookFour);
 
-		var personSeven = result.get(7);
+		var bookSeven = result.get(7);
 
-		assertResult(personSeven);
+		assertResult(bookSeven);
 	}
 
 	@Test
 	void testCreate() {
-		Person entity = input.mockEntity(1);
-		PersonVO vo = persistEntity(entity);
+		Book entity = input.mockEntity(1);
+		BookVO vo = persistEntity(entity);
 
 		var result = service.create(vo);
 
@@ -146,8 +143,8 @@ class PersonServiceTest {
 
 	@Test
 	void testUpdate() {
-		Person entity = findEntity(1L);
-		PersonVO vo = persistEntity(entity);
+		Book entity = findEntity(1);
+		BookVO vo = persistEntity(entity);
 
 		var result = service.update(vo);
 
@@ -165,9 +162,8 @@ class PersonServiceTest {
 
 	@Test
 	void testDelete() {
-		Person entity = findEntity(1L);
+		Book entity = findEntity(1);
 
 		service.delete(entity.getId());
 	}
-
 }
