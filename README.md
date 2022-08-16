@@ -1,5 +1,5 @@
 # APIs-RESTful
-Códigos de aprendizagem sobre API's RESTful
+Códigos de aprendizagem sobre API RESTful
 
 POSTMAN
 
