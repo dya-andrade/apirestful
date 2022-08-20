@@ -33,7 +33,9 @@ jobs:
       
     - name: Docker Compose Build
       working-directory: ./21_Docker
-      run: docker compose build
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/api-restful .
+        docker compose up -d --build
       
     - name: Push to Docker Hub Container Registry
       run: |
