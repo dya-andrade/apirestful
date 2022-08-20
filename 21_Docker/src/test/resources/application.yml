@@ -1,8 +1,8 @@
 server:
-  port: 443
+  port: 8080
   
 cors:
-  originPatterns: http://localhost:8080,http://localhost:3000,https://apirestful.com.br
+  originPatterns: http://localhost:8888,http://localhost:3000,https://apirestful.com.br
 
 file:
   upload-dir: /home/runner/work/ESTUDO_APIRESTful/files/upload-dir #diretório para salvar os arquivos  

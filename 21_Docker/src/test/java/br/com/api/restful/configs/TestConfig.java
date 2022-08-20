@@ -2,7 +2,7 @@ package br.com.api.restful.configs;
 
 public class TestConfig {
 	
-	public static final int SERVER_PORT = 443;
+	public static final int SERVER_PORT = 8080;
 	
 	public static final String HEADER_PARAM_AUTHORIZATION = "Authorization";
 	public static final String HEADER_PARAM_ORIGIN = "Origin";

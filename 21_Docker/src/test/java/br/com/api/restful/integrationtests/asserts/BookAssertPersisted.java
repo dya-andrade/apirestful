@@ -92,47 +92,47 @@ public class BookAssertPersisted {
 	}
 	
 	public void assertHATEAOSJSON(String content) {
-		//quando acessa o context utiliza a porta 8888
-		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8888/api/book/v1/7\"}}}"));
-		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8888/api/book/v1/15\"}}}"));
-		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8888/api/book/v1/9\"}}}"));
+		//quando acessa o context utiliza a porta 8080
+		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8080/api/book/v1/7\"}}}"));
+		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8080/api/book/v1/15\"}}}"));
+		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8080/api/book/v1/9\"}}}"));
 
 		assertTrue(content.contains("\"page\":{\"size\":3,\"totalElements\":15,\"totalPages\":5,\"number\":2}}"));
 		
-		assertTrue(content.contains("\"first\":{\"href\":\"http://localhost:8888/api/book/v1?direction=asc&page=0&size=3&sort=title,asc\"}"));
-		assertTrue(content.contains("\"prev\":{\"href\":\"http://localhost:8888/api/book/v1?direction=asc&page=1&size=3&sort=title,asc\"}"));
-		assertTrue(content.contains("\"self\":{\"href\":\"http://localhost:8888/api/book/v1?page=2&size=3&direction=asc\"}"));
-		assertTrue(content.contains("\"next\":{\"href\":\"http://localhost:8888/api/book/v1?direction=asc&page=3&size=3&sort=title,asc\"}"));
-		assertTrue(content.contains("\"last\":{\"href\":\"http://localhost:8888/api/book/v1?direction=asc&page=4&size=3&sort=title,asc\"}}"));
+		assertTrue(content.contains("\"first\":{\"href\":\"http://localhost:8080/api/book/v1?direction=asc&page=0&size=3&sort=title,asc\"}"));
+		assertTrue(content.contains("\"prev\":{\"href\":\"http://localhost:8080/api/book/v1?direction=asc&page=1&size=3&sort=title,asc\"}"));
+		assertTrue(content.contains("\"self\":{\"href\":\"http://localhost:8080/api/book/v1?page=2&size=3&direction=asc\"}"));
+		assertTrue(content.contains("\"next\":{\"href\":\"http://localhost:8080/api/book/v1?direction=asc&page=3&size=3&sort=title,asc\"}"));
+		assertTrue(content.contains("\"last\":{\"href\":\"http://localhost:8080/api/book/v1?direction=asc&page=4&size=3&sort=title,asc\"}}"));
 	}
 	
 	public void assertHATEAOSXML(String content) {
-		//quando acessa o context utiliza a porta 8888
-		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8888/api/book/v1/7</href></links>"));
-		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8888/api/book/v1/15</href></links>"));
-		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8888/api/book/v1/9</href></links>"));
+		//quando acessa o context utiliza a porta 8080
+		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8080/api/book/v1/7</href></links>"));
+		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8080/api/book/v1/15</href></links>"));
+		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8080/api/book/v1/9</href></links>"));
 
 		assertTrue(content.contains("<page><size>3</size><totalElements>15</totalElements><totalPages>5</totalPages><number>2</number></page>"));
 		
-		assertTrue(content.contains("<rel>first</rel><href>http://localhost:8888/api/book/v1?direction=asc&amp;page=0&amp;size=3&amp;sort=title,asc</href>"));
-		assertTrue(content.contains("<rel>prev</rel><href>http://localhost:8888/api/book/v1?direction=asc&amp;page=1&amp;size=3&amp;sort=title,asc</href>"));
-		assertTrue(content.contains("<rel>self</rel><href>http://localhost:8888/api/book/v1?page=2&amp;size=3&amp;direction=asc</href>"));
-		assertTrue(content.contains("<rel>next</rel><href>http://localhost:8888/api/book/v1?direction=asc&amp;page=3&amp;size=3&amp;sort=title,asc</href>"));
-		assertTrue(content.contains("<rel>last</rel><href>http://localhost:8888/api/book/v1?direction=asc&amp;page=4&amp;size=3&amp;sort=title,asc</href>"));
+		assertTrue(content.contains("<rel>first</rel><href>http://localhost:8080/api/book/v1?direction=asc&amp;page=0&amp;size=3&amp;sort=title,asc</href>"));
+		assertTrue(content.contains("<rel>prev</rel><href>http://localhost:8080/api/book/v1?direction=asc&amp;page=1&amp;size=3&amp;sort=title,asc</href>"));
+		assertTrue(content.contains("<rel>self</rel><href>http://localhost:8080/api/book/v1?page=2&amp;size=3&amp;direction=asc</href>"));
+		assertTrue(content.contains("<rel>next</rel><href>http://localhost:8080/api/book/v1?direction=asc&amp;page=3&amp;size=3&amp;sort=title,asc</href>"));
+		assertTrue(content.contains("<rel>last</rel><href>http://localhost:8080/api/book/v1?direction=asc&amp;page=4&amp;size=3&amp;sort=title,asc</href>"));
 	}
 	
 	public void assertHATEAOSYAML(String content) {
-		//quando acessa o context utiliza a porta 8888
-		assertTrue(content.contains("links:  - rel: \"self\"    href: \"http://localhost:8888/api/book/v1/15\""));
-		assertTrue(content.contains("links:  - rel: \"self\"    href: \"http://localhost:8888/api/book/v1/9\""));
-		assertTrue(content.contains("links:  - rel: \"self\"    href: \"http://localhost:8888/api/book/v1/7\""));
+		//quando acessa o context utiliza a porta 8080
+		assertTrue(content.contains("links:  - rel: \"self\"    href: \"http://localhost:8080/api/book/v1/15\""));
+		assertTrue(content.contains("links:  - rel: \"self\"    href: \"http://localhost:8080/api/book/v1/9\""));
+		assertTrue(content.contains("links:  - rel: \"self\"    href: \"http://localhost:8080/api/book/v1/7\""));
 
 		assertTrue(content.contains("page:  size: 3  totalElements: 15  totalPages: 5  number: 2"));
 		
-		assertTrue(content.contains("rel: \"first\"  href: \"http://localhost:8888/api/book/v1?direction=asc&page=0&size=3&sort=title,asc\""));
-		assertTrue(content.contains("rel: \"prev\"  href: \"http://localhost:8888/api/book/v1?direction=asc&page=1&size=3&sort=title,asc\""));
-		assertTrue(content.contains("rel: \"self\"  href: \"http://localhost:8888/api/book/v1?page=2&size=3&direction=asc\""));
-		assertTrue(content.contains("rel: \"next\"  href: \"http://localhost:8888/api/book/v1?direction=asc&page=3&size=3&sort=title,asc\""));
-		assertTrue(content.contains("rel: \"last\"  href: \"http://localhost:8888/api/book/v1?direction=asc&page=4&size=3&sort=title,asc\""));
+		assertTrue(content.contains("rel: \"first\"  href: \"http://localhost:8080/api/book/v1?direction=asc&page=0&size=3&sort=title,asc\""));
+		assertTrue(content.contains("rel: \"prev\"  href: \"http://localhost:8080/api/book/v1?direction=asc&page=1&size=3&sort=title,asc\""));
+		assertTrue(content.contains("rel: \"self\"  href: \"http://localhost:8080/api/book/v1?page=2&size=3&direction=asc\""));
+		assertTrue(content.contains("rel: \"next\"  href: \"http://localhost:8080/api/book/v1?direction=asc&page=3&size=3&sort=title,asc\""));
+		assertTrue(content.contains("rel: \"last\"  href: \"http://localhost:8080/api/book/v1?direction=asc&page=4&size=3&sort=title,asc\""));
 	}
 }
