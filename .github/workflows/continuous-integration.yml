@@ -39,7 +39,7 @@ jobs:
       
     - name: Push to Docker Hub Container Registry
       run: |
-        docker tag ${{ secrets.DOCKER_USERNAME }}/familybudgetcontrol:latest ${{ secrets.DOCKER_USERNAME }}/familybudgetcontrol:${{ github.run_id }}
+        docker tag ${{ secrets.DOCKER_USERNAME }}/api-restful:latest ${{ secrets.DOCKER_USERNAME }}/api-restful:${{ github.run_id }}
         
-        docker push ${{ secrets.DOCKER_USERNAME }}/familybudgetcontrol:${{ github.run_id }}
-        docker push ${{ secrets.DOCKER_USERNAME }}/familybudgetcontrol:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/api-restful:${{ github.run_id }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/api-restful:latest
