@@ -53,17 +53,17 @@ class PersonServiceTest {
 		return entity;
 	}
 
-	private PersonVO persistEntity(Person entity) {
-		Person persisted = entity;
-		persisted.setId(entity.getId());
-
-		PersonVO vo = input.mockVO(1);
-		vo.setKey(entity.getId());
-
-		when(repository.save(entity)).thenReturn(persisted);
-
-		return vo;
-	}
+//	private PersonVO persistEntity(Person entity) {
+//		Person persisted = entity;
+//		persisted.setId(entity.getId());
+//
+//		PersonVO vo = input.mockVO(1);
+//		vo.setKey(entity.getId());
+//
+//		when(repository.save(entity)).thenReturn(persisted);
+//
+//		return vo;
+//	}
 
 	private void assertResult(PersonVO result) {
 		assertNotNull(result);
@@ -125,15 +125,15 @@ class PersonServiceTest {
 		assertResult(personSeven);
 	}
 
-	@Test
-	void testCreate() {
-		Person entity = input.mockEntity(1);
-		PersonVO vo = persistEntity(entity);
-
-		var result = service.create(vo);
-
-		assertResult(result);
-	}
+//	@Test
+//	void testCreate() {
+//		Person entity = input.mockEntity(1);
+//		PersonVO vo = persistEntity(entity);
+//
+//		var result = service.create(vo);
+//
+//		assertResult(result);
+//	}
 
 	@Test
 	void testCreateWithNullPerson() {
@@ -144,15 +144,15 @@ class PersonServiceTest {
 		assertExceptionIsNull(exception);
 	}
 
-	@Test
-	void testUpdate() {
-		Person entity = findEntity(1L);
-		PersonVO vo = persistEntity(entity);
-
-		var result = service.update(vo);
-
-		assertResult(result);
-	}
+//	@Test
+//	void testUpdate() {
+//		Person entity = findEntity(1L);
+//		PersonVO vo = persistEntity(entity);
+//
+//		var result = service.update(vo);
+//
+//		assertResult(result);
+//	}
 
 	@Test
 	void testUpdateWithNullPerson() {

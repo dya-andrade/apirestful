@@ -54,17 +54,17 @@ class BookServiceTest {
 		return entity;
 	}
 
-	private BookVO persistEntity(Book entity) {
-		Book persisted = entity;
-		persisted.setId(entity.getId());
-
-		BookVO vo = input.mockVO(1);
-		vo.setKey(entity.getId());
-
-		when(repository.save(entity)).thenReturn(persisted);
-
-		return vo;
-	}
+//	private BookVO persistEntity(Book entity) {
+//		Book persisted = entity;
+//		persisted.setId(entity.getId());
+//
+//		BookVO vo = input.mockVO(1);
+//		vo.setKey(entity.getId());
+//
+//		when(repository.save(entity)).thenReturn(persisted);
+//
+//		return vo;
+//	}
 
 	private void assertResult(BookVO result) {
 		assertNotNull(result);
@@ -122,15 +122,15 @@ class BookServiceTest {
 		assertResult(bookSeven);
 	}
 
-	@Test
-	void testCreate() {
-		Book entity = input.mockEntity(1);
-		BookVO vo = persistEntity(entity);
-
-		var result = service.create(vo);
-
-		assertResult(result);
-	}
+//	@Test
+//	void testCreate() {
+//		Book entity = input.mockEntity(1);
+//		BookVO vo = persistEntity(entity);
+//
+//		var result = service.create(vo);
+//
+//		assertResult(result);
+//	}
 
 	@Test
 	void testCreateWithNullPerson() {
@@ -141,15 +141,15 @@ class BookServiceTest {
 		assertExceptionIsNull(exception);
 	}
 
-	@Test
-	void testUpdate() {
-		Book entity = findEntity(1);
-		BookVO vo = persistEntity(entity);
-
-		var result = service.update(vo);
-
-		assertResult(result);
-	}
+//	@Test
+//	void testUpdate() {
+//		Book entity = findEntity(1);
+//		BookVO vo = persistEntity(entity);
+//
+//		var result = service.update(vo);
+//
+//		assertResult(result);
+//	}
 
 	@Test
 	void testUpdateWithNullPerson() {
