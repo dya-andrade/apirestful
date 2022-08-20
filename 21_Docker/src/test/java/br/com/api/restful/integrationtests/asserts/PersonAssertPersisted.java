@@ -150,7 +150,7 @@ public class PersonAssertPersisted {
 		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8080/api/person/v1/803</href></links>"));
 		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost:8080/api/person/v1/605</href></links>"));
 
-		assertTrue(content.contains("<page><size>10</size><totalElements>1006</totalElements><totalPages>101</totalPages><number>3</number></page>"));
+		assertTrue(content.contains("<page><size>10</size><totalElements>1005</totalElements><totalPages>101</totalPages><number>3</number></page>"));
 		
 		assertTrue(content.contains("<rel>first</rel><href>http://localhost:8080/api/person/v1?direction=asc&amp;page=0&amp;size=10&amp;sort=firstName,asc</href>"));
 		assertTrue(content.contains("<rel>prev</rel><href>http://localhost:8080/api/person/v1?direction=asc&amp;page=2&amp;size=10&amp;sort=firstName,asc</href>"));
