@@ -5,7 +5,7 @@ cors:
   originPatterns: http://localhost:8080,http://localhost:3000,https://apirestful.com.br
 
 file:
-  upload-dir: /files/upload-dir #diretório para salvar os arquivos  
+  upload-dir: /home/runner/work/ESTUDO_APIRESTful/files/upload-dir #diretório para salvar os arquivos  
 
 security:
   jwt:
