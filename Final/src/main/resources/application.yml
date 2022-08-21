@@ -1,0 +1,43 @@
+server:
+  port: 8888
+  
+cors:
+  originPatterns: http://localhost:8888,http://localhost:3000,https://apirestful.com.br
+
+file:
+  upload-dir: /files/upload-dir #diretório para salvar os arquivos  
+  
+security:
+  jwt:
+    token:
+      secret-key: 53cr53
+      expire-length: 3600000
+
+      
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/apirestful?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: root
+    
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+    
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB #grava em memoria, e passando os KB grava em disco
+      max-request-size: 200MB #tamanho max por request
+      max-file-size: 215MB #tamanho max por arquivo  main:    allow-circular-references: true   
+springdoc:
+  pathsToMatch: #para restrigir as descrições
+  - /auth/** 
+  - /api/**/v1/**
+  swagger-ui:
+    use-root-path: true #acessível diretamente do caminho raiz 
