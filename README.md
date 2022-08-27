@@ -1,5 +1,5 @@
 # API RESTful
-Códigos de aprendizagem sobre API RESTful
+Códigos de estudo sobre API RESTful
 
 Arquitetura API REST:
 
