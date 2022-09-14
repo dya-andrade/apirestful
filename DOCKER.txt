@@ -1,0 +1,52 @@
+ DOCKER
+ 
+ docker compose up -d --build
+ docker compose ls
+ docker ps #container em execução
+ docker ps -a #container parados
+ docker logs CONTAINER_ID
+ docker images #para saber as imagens
+ docker build -t nome_da_imagem . #criar image
+ docker run nome_da_imagem para #criar container
+ 
+ & 'C:\Program Files\Docker\Docker\DockerCli.exe' -SwitchDaemon
+ 
+ docker logs -f CONTAINER_ID #ele mostra os logs em tempo real
+ 
+ docker login #para fazer login
+ docker push REPOSITORY_ID #para enviar pro docker hub
+ 
+ HEROKU
+ 
+ heroku login
+ 
+ heroku container:login
+
+heroku create NOME_DO_PROJETO
+
+heroku git:remote -a NOME_DO_PROJETO
+
+https://api-familybudgetcontrol.herokuapp.com/ | https://git.heroku.com/api-familybudgetcontrol.git
+
+set git remote heroku to https://git.heroku.com/api-familybudgetcontrol.git
+
+heroku container:push web
+
+heroku container:release web
+
+heroku open
+
+heroku logs --tail
+
+CONTAINER ID   IMAGE                             COMMAND                  CREATED              STATUS              PORTS                                         NAMES
+5a9a44422e3b   mulhermarav/familybudgetcontrol   "java -Xmx512m -Dser…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp                            desafio_alura_familybudgetcontrol-DESAFIO-ALURA-familyBudgetControl-1
+fc642456609c   mysql:8.0.29                      "docker-entrypoint.s…"   About a minute ago   Up About a minute   3306/tcp, 33060/tcp, 0.0.0.0:3308->3308/tcp   desafio_alura_familybudgetcontrol-db-1
+b43008932cb3   mysql:8.0.29                      "docker-entrypoint.s…"   23 hours ago         Up 23 hours         3306/tcp, 33060/tcp, 0.0.0.0:3309->3309/tcp   21_docker-db-1
+
+docker run -p 9411:9411 openzipkin/zipkin:2.23.2
+
+localhost:9411/zipkin Distributed Tracing - request logger
+ID único
+
+docker compose up -d
+docker compose down #para parar todos os containers
